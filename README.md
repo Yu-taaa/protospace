@@ -8,7 +8,6 @@ Protospace
 |:------:|:---------:|:-----:|:---:|
 | string |   string  |  text | text|
 
-
 ### Prototypes
 |title|catch_copy|concept|user_id|
 |:---:|:--------:|:-----:|:-----:|
@@ -33,4 +32,31 @@ Protospace
 |user_id|like_id|
 |:-----:|:-----:|
 |integer|integer|
+
+### Association
+
+##### User
+- has_many comments
+- has_many prototypes
+- has_many likes, through: :Users_likes
+
+##### Prototype
+- has_many comments
+- has_many images
+- belongs_to user
+
+##### Comment
+- belongs_to user
+- belongs_to prototype
+
+##### Image
+- belongs_to prototype
+
+##### Like
+- belongs_to user
+
+
+
+
+
 
