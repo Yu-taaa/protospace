@@ -19,31 +19,28 @@ Protospace
 |text|integer|integer|
 
 ### Images
-|image_url|prototype_id|
-|:-----:|:-----:|
-|text|integer|
+|image_url|small_image_url|prototype_id|
+|:-----:|:-----:|:-----:|
+|text|text|integer|
 
 ### Likes
-|user_id|like_bad|
-|:-----:|:-----:|
-|integer|boolean|
+|user_id|like_bad|prototype_id|
+|:-----:|:-----:|:-----:|
+|integer|boolean|integer|
 
-### Users_likes
-|user_id|like_id|
-|:-----:|:-----:|
-|integer|integer|
 
 ### Association
 
 ##### User
 - has_many comments
-- has_many prototypes
-- has_many likes, through: :Users_likes
+- has_many prototypes, through:likes
+
 
 ##### Prototype
 - has_many comments
 - has_many images
 - belongs_to user
+- has_many likes
 
 ##### Comment
 - belongs_to user
@@ -54,6 +51,7 @@ Protospace
 
 ##### Like
 - belongs_to user
+- belongs_to prototype
 
 
 
