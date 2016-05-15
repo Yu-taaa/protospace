@@ -19,21 +19,22 @@ Protospace
 |text|integer|integer|
 
 ### Images
-|image_url|small_image_url|prototype_id|
+|image_url|status|prototype_id|
 |:-----:|:-----:|:-----:|
-|text|text|integer|
+|text|integer|integer|
 
 ### Likes
-|user_id|like_bad|prototype_id|
-|:-----:|:-----:|:-----:|
-|integer|boolean|integer|
+|user_id|prototype_id|
+|:-----:|:-----:|
+|integer|integer|
 
 
 ### Association
 
 ##### User
 - has_many comments
-- has_many prototypes, through:likes
+- has_many prototypes
+- has_many like_prototypes, through:likes, source: :prototypes
 
 
 ##### Prototype
