@@ -1,20 +1,21 @@
 class UsersController < ApplicationController
 
-  def index
-    @user = User.find(params[:id])
-  end
 
   def show
     @user = User.find(params[:id])
   end
 
-  def update_params
-    current_user.update(update_params)
-    redirect_to action: show
-  end
 
   def edit
+
+    @user = User.find(params[:id])
   end
+
+  def update
+    current_user.update(update_params)
+    redirect_to action: :show
+  end
+
 
   private
   def update_params
