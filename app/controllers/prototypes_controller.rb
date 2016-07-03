@@ -8,8 +8,13 @@ class PrototypesController < ApplicationController
   end
 
   def create
-    @prototype = Prototype.create(prototype_params)
-    redirect_to action: 'index'
+    @prototype = current_user.prototypes.new(prototype_params)
+    if @prototype.save
+      redirect_to root_path, success: "Successfully created your prototype."
+    else
+      render new_prototype_path
+    end
+
   end
 
   private
@@ -18,7 +23,7 @@ class PrototypesController < ApplicationController
       :title,
       :concept,
       :catch_copy,
-      images_attributes: [:image_url, :status, :id]
+      images_attributes: [:image_url, :status, :id, :prototype_id]
     )
   end
 end

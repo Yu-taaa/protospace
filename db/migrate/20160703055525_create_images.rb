@@ -3,10 +3,9 @@ class CreateImages < ActiveRecord::Migration
     create_table :images do |t|
       t.text :image_url
       t.integer :status
-      t.integer :prototype_id
+      t.references :prototype, index: true
 
-
-      t.timestamps null: false
+      t.timestamps
     end
   end
 end
