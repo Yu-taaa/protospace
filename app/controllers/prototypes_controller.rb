@@ -1,5 +1,6 @@
 class PrototypesController < ApplicationController
   def index
+    @prototypes = Prototype.includes(:user).page(params[:page]).per(1).order("created_at DESC")
   end
 
   def new
@@ -8,13 +9,17 @@ class PrototypesController < ApplicationController
   end
 
   def create
-    @prototype = current_user.prototypes.new(prototype_params)
-    if @prototype.save
+    @prototypes = current_user.prototypes.new(prototype_params)
+    if @prototypes.save
       redirect_to root_path, success: "Successfully created your prototype."
     else
       render new_prototype_path
     end
 
+  end
+
+  def show
+    @prototype = Prototype.find(params[:id])
   end
 
   private
