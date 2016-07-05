@@ -11,15 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160520153615) do
+ActiveRecord::Schema.define(version: 20160703135104) do
+
+  create_table "images", force: :cascade do |t|
+    t.text     "image_url",    limit: 65535
+    t.integer  "status",       limit: 4
+    t.integer  "prototype_id", limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "images", ["prototype_id"], name: "index_images_on_prototype_id", using: :btree
 
   create_table "prototypes", force: :cascade do |t|
     t.string   "title",      limit: 255
     t.string   "catch_copy", limit: 255
     t.text     "concept",    limit: 65535
-    t.text     "user_id",    limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: :cascade do |t|
@@ -39,6 +49,7 @@ ActiveRecord::Schema.define(version: 20160520153615) do
     t.string   "member_name",            limit: 255
     t.text     "profile",                limit: 65535
     t.text     "works",                  limit: 65535
+    t.string   "avatar",                 limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
