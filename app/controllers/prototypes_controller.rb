@@ -9,8 +9,8 @@ class PrototypesController < ApplicationController
   end
 
   def create
-    @prototypes = current_user.prototypes.new(prototype_params)
-    if @prototypes.save
+    @prototype = current_user.prototypes.new(prototype_params)
+    if @prototype.save
       redirect_to root_path, success: "Successfully created your prototype."
     else
       render new_prototype_path
