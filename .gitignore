@@ -10,5 +10,10 @@
 # Ignore all logfiles and tempfiles.
 /log/*
 !/log/.keep
+<<<<<<< HEAD
 tmp/
 image/
+=======
+/tmp
+/image
+>>>>>>> ShowPrototype
