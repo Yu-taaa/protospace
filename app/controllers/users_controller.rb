@@ -1,15 +1,11 @@
 class UsersController < ApplicationController
-
+  before_action :user_info, except: :update
 
   def show
-    @user = User.find(params[:id])
     @prototypes = @user.prototypes
   end
 
-
   def edit
-
-    @user = User.find(params[:id])
   end
 
   def update
@@ -17,11 +13,12 @@ class UsersController < ApplicationController
     redirect_to action: :show
   end
 
-
   private
   def update_params
     params.require(:user).permit(:email, :nickname, :member_name, :profile, :works, :avatar)
   end
 
-
+  def user_info
+    @user = User.find(params[:id])
+  end
 end
