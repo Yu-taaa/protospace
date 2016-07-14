@@ -1,6 +1,4 @@
 class PrototypesController < ApplicationController
-  before_action :prototype_info, only: [:show, :edit, :update, :destroy]
-
   def index
     @prototypes = Prototype.includes(:user).page(params[:page]).per(1).order("created_at DESC")
   end
@@ -20,22 +18,7 @@ class PrototypesController < ApplicationController
   end
 
   def show
-  end
-
-  def edit
-    @prototype_images = @prototype.images.build
-  end
-
-  def update
-    @prototype.update(update_params)
-    redirect_to root_path
-  end
-
-  def destroy
-    if @prototype.user_id == current_user.id
-      @prototype.destroy
-      redirect_to root_path
-    end
+    @prototype = Prototype.find(params[:id])
   end
 
   private
@@ -46,18 +29,5 @@ class PrototypesController < ApplicationController
       :catch_copy,
       images_attributes: [:image_url, :status, :id, :prototype_id]
     )
-  end
-
-  def update_params
-    params.require(:prototype).permit(
-      :title,
-      :concept,
-      :catch_copy,
-      images_attributes: [:image_url, :status, :id, :prototype_id]
-    )
-  end
-
-  def prototype_info
-    @prototype = Prototype.find(params[:id])
   end
 end
