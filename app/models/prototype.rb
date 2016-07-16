@@ -9,17 +9,17 @@ class Prototype < ActiveRecord::Base
     images.main[0]
   end
 
-   def main_image_url
-     images.main[0].image_url
-   end
+  def main_image_url
+    images.main[0].image_url
+  end
 
   def sub_image(num)
     images.sub[num]
   end
 
-   def sub_image_url(num)
-     images.sub[num].image_url if images.sub[num].image_url
-   end
+  def sub_image_url(num)
+    images.sub[num].image_url if images.sub[num].image_url
+  end
 
   def sub_image_id(num)
     images.sub[num].id if sub_image(num)

@@ -1,5 +1,5 @@
 class PrototypesController < ApplicationController
-   before_action :prototype_info, only: [:show, :edit, :update, :destroy]
+   before_action :prototype_info, except: [:index, :new, :create]
 
   def index
     @prototypes = Prototype.includes(:user).page(params[:page]).per(5).order("created_at DESC")

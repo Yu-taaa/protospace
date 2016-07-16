@@ -52,4 +52,3 @@ gem 'bootstrap-sass'
 gem 'carrierwave'
 gem 'devise'
 gem 'kaminari'
-

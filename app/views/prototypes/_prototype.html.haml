@@ -8,13 +8,13 @@
         %li
           = link_to 'Edit', edit_prototype_path(prototype.id), method: :get
     .thumbnail
-      = link_to image_tag("sample.png"), prototype_path(prototype.id), method: :get
+      = link_to (image_tag prototype.main_image_url), prototype_path(prototype.id), method: :get
       .caption
         %h3
           = prototype.title
         .proto-meta
           .proto-user
-            = link_to "by #{prototype.user.nickname}", user_path(prototype.user.id), method: :get
+            = link_to "by #{prototype.user.nickname}", user_path(prototype.user), method: :get
           .proto-posted
             Apr 26
       %ul.proto-tag-list.list-inline
