@@ -18,13 +18,13 @@
         %span.num 20
   .row
     .col-md-9
-      = image_tag(@prototype.images.main.first.image_url, class: 'img-responsive')
+      = image_tag(@prototype.main_image_url, class: 'img-responsive')
     .col-md-3
       %ul.proto-sub-list.list-group
         %li.list-group-item
-          = image_tag(@prototype.images.sub.first.image_url, class: 'img-responsive')
+          = image_tag(@prototype.sub_image_url(0), class: 'img-responsive')
         %li.list-group-item
-          = image_tag(@prototype.images.sub.second.image_url, class: 'img-responsive')
+          = image_tag(@prototype.sub_image_url(1), class: 'img-responsive')
   .row.proto-description
     .col-md-3
       %h4 Catch Copy

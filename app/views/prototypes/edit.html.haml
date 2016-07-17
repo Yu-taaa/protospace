@@ -7,28 +7,29 @@
       %ul
         - @prototype.errors.full_messages.each do |msg|
           %li= msg
-  .col-md-8.col-md-offset-2
-    = form_for @prototype do |f|
+  = form_for @prototype do |f|
+    .col-md-8.col-md-offset-2
       %header.row.user-nav.row
         .col-md-12
           = f.text_field :title, placeholder: 'Title'
+      .row
         .col-md-12
           .cover-image-upload
-            = f.fields_for :images do |img_form|
+            = f.fields_for :images, @prototype_images do |img_form|
               = img_form.file_field :image_url
+              = image_tag @prototype.main_image_url
               = img_form.hidden_field :status, value: :main
+              = img_form.hidden_field :id, value: @prototype.main_image.id
         .col-md-12
           %ul.proto-sub-list.list-group
-            %li.list-group-item.col-md-4
-              .image-upload
-                = f.fields_for :images do |img_form|
-                  = img_form.file_field :image_url
-                  = img_form.hidden_field :status, value: :sub
-            %li.list-group-item.col-md-4
-              .image-upload
-                = f.fields_for :images do |img_form|
-                  = img_form.file_field :image_url
-                  = img_form.hidden_field :status, value: :sub
+            - 2.times do |i|
+              = f.fields_for :images, @prototype_images do |img_form|
+                %li.list-group-item.col-md-4
+                  .image-upload
+                    = image_tag @prototype.sub_image_url(i)
+                    = img_form.file_field :image_url
+                    = img_form.hidden_field :status, value: :sub
+                    = img_form.hidden_field :id, value:  @prototype.sub_image_id(i)
             %li.list-group-item.col-md-4
               .image-upload-plus
                 %span +
