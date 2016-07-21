@@ -20,6 +20,12 @@ class PrototypesController < ApplicationController
   end
 
   def show
+
+   @like = @prototype.likes.find_by(user_id: current_user.id)
+
+#１つのprototypeに「いいね」した現在ログイン中のユーザーのid
+
+
   end
 
   def edit

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160703135104) do
+ActiveRecord::Schema.define(version: 20160717093459) do
 
   create_table "images", force: :cascade do |t|
     t.text     "image_url",    limit: 65535
@@ -23,13 +23,21 @@ ActiveRecord::Schema.define(version: 20160703135104) do
 
   add_index "images", ["prototype_id"], name: "index_images_on_prototype_id", using: :btree
 
-  create_table "prototypes", force: :cascade do |t|
-    t.string   "title",      limit: 255
-    t.string   "catch_copy", limit: 255
-    t.text     "concept",    limit: 65535
-    t.integer  "user_id",    limit: 4
+  create_table "likes", force: :cascade do |t|
+    t.integer  "user_id",      limit: 4
+    t.integer  "prototype_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "prototypes", force: :cascade do |t|
+    t.string   "title",       limit: 255
+    t.string   "catch_copy",  limit: 255
+    t.text     "concept",     limit: 65535
+    t.integer  "user_id",     limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "likes_count", limit: 4,     default: 0
   end
 
   create_table "users", force: :cascade do |t|
