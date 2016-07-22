@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160717093459) do
+ActiveRecord::Schema.define(version: 20160722084347) do
 
   create_table "images", force: :cascade do |t|
     t.text     "image_url",    limit: 65535
@@ -29,6 +29,9 @@ ActiveRecord::Schema.define(version: 20160717093459) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "likes", ["prototype_id"], name: "index_likes_on_prototype_id", using: :btree
+  add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
 
   create_table "prototypes", force: :cascade do |t|
     t.string   "title",       limit: 255

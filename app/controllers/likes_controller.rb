@@ -2,8 +2,7 @@ class LikesController < ApplicationController
   before_action :prototype_info
 
   def create
-    @like = Like.create(user_id: current_user.id, prototype_id: params[:prototype_id])
-    @prototype.reload
+    @like = @prototype.likes.create(user_id: current_user.id)
   end
 
   def destroy
