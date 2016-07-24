@@ -1,0 +1,19 @@
+- if user_signed_in?
+  - if @prototype.like_user(current_user)
+    = button_to prototype_like_path(@prototype, @like), method: :delete,id: "js-likebtn", class: "btn btn-default", remote: true do
+      = image_tag("icon_red_heart.svg")
+      LIKE
+      %span#like-sum.num
+        = @prototype.likes_count
+  - else
+    = button_to prototype_likes_path(@prototype), id: "js-likebtn",class: "btn btn-default", remote: true do
+      = image_tag("icon_heart.svg")
+      LIKE
+      %span#like-sum.num
+        = @prototype.likes_count
+- else
+  = button_tag disabled: 'disabled', id: "like-buttons", class: "btn btn-default" do
+    = image_tag("icon_heart.svg")
+    LIKE
+    %span#like-sum
+      = @prototype.likes_count
