@@ -12,7 +12,8 @@
       %span#like-sum.num
         = @prototype.likes_count
 - else
-  = image_tag("icon_heart.svg")
-  LIKE
-  %span#like-sum
-    = @prototype.likes_count
+  = button_tag disabled: 'disabled', id: "like-buttons", class: "btn btn-default" do
+    = image_tag("icon_heart.svg")
+    LIKE
+    %span#like-sum
+      = @prototype.likes_count
