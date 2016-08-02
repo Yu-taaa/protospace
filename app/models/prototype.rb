@@ -2,6 +2,7 @@ class Prototype < ActiveRecord::Base
   belongs_to :user
   has_many :images, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true, reject_if: proc { |attributes| attributes['image_url'].blank? }
   #validation
   validates :title, :concept, :catch_copy, presence: true

@@ -21,14 +21,15 @@ class PrototypesController < ApplicationController
 
   def show
    if user_signed_in?
-   @like = @prototype.likes.find_by(user_id: current_user.id)
+     @like = @prototype.likes.find_by(user_id: current_user.id)
    end
-   
 #１つのprototypeに「いいね」した現在ログイン中のユーザーのid
+     @comment = Comment.new
+     @comments = @prototype.comments.includes(:user)
   end
 
   def edit
-   @prototype_images = @prototype.images.build
+    @prototype_images = @prototype.images.build
   end
 
   def update
