@@ -2,7 +2,8 @@ class PrototypesController < ApplicationController
    before_action :prototype_info, except: [:index, :new, :create]
 
   def index
-    @prototypes = Prototype.includes(:user).page(params[:page]).per(5).order("created_at DESC")
+    @prototypes = Prototype.includes(:user).page(params[:page]).per(5).order("likes_count DESC")
+    @status = 'popular'
   end
 
   def new
