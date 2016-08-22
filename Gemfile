@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -52,3 +52,4 @@ gem 'bootstrap-sass'
 gem 'carrierwave'
 gem 'devise'
 gem 'kaminari'
+gem 'acts-as-taggable-on', '~> 4.0'
