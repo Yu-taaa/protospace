@@ -2,7 +2,8 @@ class PrototypesController < ApplicationController
    before_action :prototype_info, except: [:index, :new, :create]
 
   def index
-    @prototypes = Prototype.includes(:user).page(params[:page]).per(5).order("likes_count DESC")
+    @prototypes = Prototype.includes(:user, :tags)
+.page(params[:page]).per(5).order("likes_count DESC")
     @status = 'popular'
   end
 
@@ -52,7 +53,7 @@ class PrototypesController < ApplicationController
       :concept,
       :catch_copy,
       images_attributes: [:image_url, :status, :id, :prototype_id]
-    )
+    ).merge(tag_list: params[:prototype][:tag_list])
   end
 
   def update_params

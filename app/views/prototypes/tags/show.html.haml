@@ -16,9 +16,8 @@
 
 .container.proto-list
   .row
-    - @prototypes.each do |prototype|
-      = render partial: "prototypes/prototype", locals: { prototype: prototype }
-
+    = render partial: 'prototypes/prototype', collection: @prototypes
+    / 「collection」一つの記事項目をテンプレート化して、それを指定した要素（:@prototypes）の分だけ繰り返し表示する
 .text-center
   %ul.pagination
     %li.disabled

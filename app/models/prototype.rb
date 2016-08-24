@@ -6,6 +6,7 @@ class Prototype < ActiveRecord::Base
   accepts_nested_attributes_for :images, allow_destroy: true, reject_if: proc { |attributes| attributes['image_url'].blank? }
   #validation
   validates :title, :concept, :catch_copy, presence: true
+  acts_as_taggable_on :tags, :prototypes
 
   def like_user(user)
    likes.find_by(user_id: user)

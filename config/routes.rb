@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :index, :update]
   scope module: :prototypes do
     resources :newests, only: [:index]
+    resources :tags, only: [:index, :show]
   end
   resources :prototypes do
     resources :likes, only: [:create, :destroy]
